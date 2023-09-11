@@ -10,6 +10,7 @@ import {
 import {Text} from './Text';
 import {Theme} from '../Config';
 import {FormField} from './FormField';
+import Icon from 'react-native-vector-icons/Fontisto';
 export default function SelectLanguage({
   setModalVisible,
   languages,
@@ -38,31 +39,37 @@ export default function SelectLanguage({
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text>Select Language</Text>
+        <Text style={styles.select}>Select Language</Text>
         <TouchableOpacity
           style={styles.x}
           onPress={() => {
             setModalVisible(false);
           }}>
-          <Text style={styles.xText}>X</Text>
+          <Icon name="close-a" size={9} color={Theme.colors.background} />
         </TouchableOpacity>
       </View>
       <FormField
+        placeholder="Filter Languages"
         onChangeText={filterLanguages}
-        clearButton
+        searchButton
         style={styles.input}
       />
       <ScrollView contentContainerStyle={styles.scroll}>
         <FlatList
-          showsVerticalScrollIndicator
+          showsVerticalScrollIndicator={false}
           renderItem={({item}) => {
             return (
-              <TouchableOpacity
-                onPress={() => handleValue(item.value)}
-                style={{marginTop: Theme.spacing.s, padding: Theme.spacing.s}}>
-                <Text>{item.value}</Text>
+              <View>
+                <TouchableOpacity
+                  onPress={() => handleValue(item.value)}
+                  style={{
+                    marginTop: Theme.spacing.m,
+                    padding: Theme.spacing.s,
+                  }}>
+                  <Text style={{fontSize: 14}}>{item.value}</Text>
+                </TouchableOpacity>
                 <View style={styles.line} />
-              </TouchableOpacity>
+              </View>
             );
           }}
           data={filteredLanguages}
@@ -79,9 +86,11 @@ const styles = StyleSheet.create({
     borderRadius: Theme.spacing.s,
     width: '100%',
   },
+  select: {fontSize: 14},
   line: {
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: '#bbb',
+    width: '100%',
     marginTop: Theme.spacing.m,
   },
   input: {
@@ -94,8 +103,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   xText: {
-    fontSize: 12,
-    lineHeight: 16,
+    fontSize: 8,
+    lineHeight: 10,
     color: Theme.colors.background,
     fontFamily: Theme.fonts.EnglishBold,
   },
@@ -105,8 +114,10 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    width: 30,
-    height: 30,
+    // width: 25,
+    // height: 25,
+    width: 25,
+    aspectRatio: 1,
     padding: Theme.spacing.s,
   },
 });

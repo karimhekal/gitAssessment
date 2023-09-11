@@ -4,7 +4,7 @@
  *
  * @format
  */
-import {LogBox} from 'react-native';
+import {LogBox, View} from 'react-native';
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
 LogBox.ignoreAllLogs(); //Ignore all log notifications
 import React from 'react';
@@ -14,12 +14,17 @@ import {Provider} from 'react-redux';
 import {persistor, store} from './store/store';
 import List from './components/List';
 import {PersistGate} from 'redux-persist/integration/react';
+import Icon from 'react-native-vector-icons/AntDesign';
+import {Theme} from './Config';
 
 function App(): JSX.Element {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <SafeAreaView style={styles.safeArea}>
+          <View style={styles.searchContainer}>
+            <Icon name="search1" size={22} />
+          </View>
           <List />
         </SafeAreaView>
       </PersistGate>
@@ -32,6 +37,15 @@ const styles = StyleSheet.create({
   sectionContainer: {
     marginTop: 32,
     paddingHorizontal: 24,
+  },
+  searchContainer: {
+    paddingHorizontal: Theme.spacing.l,
+    paddingVertical: Theme.spacing.m,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    width: '100%',
   },
   sectionTitle: {
     fontSize: 24,

@@ -6,9 +6,15 @@ import {GitHubRepository} from '../interfaces/interfaces';
 import Icon from 'react-native-vector-icons/AntDesign';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import {abbrevNumber} from '../utils/Utils';
-function FilterRepoCard({repo}: {repo: GitHubRepository}) {
+function FilterRepoCard({
+  repo,
+  index,
+}: {
+  repo: GitHubRepository;
+  index: number;
+}) {
   return (
-    <View style={styles.card}>
+    <View style={[styles.card, {marginTop: index == 0 ? 0 : Theme.spacing.m}]}>
       <View style={styles.top}></View>
       <View style={styles.titleContainer}>
         <Icon name="book" size={20} color={Theme.colors.primary} />
@@ -23,13 +29,13 @@ function FilterRepoCard({repo}: {repo: GitHubRepository}) {
       <View style={styles.bottomSection}>
         <Text type="subheadMedium">{repo.language}</Text>
         <View style={styles.starsContainer}>
-          <AwesomeIcon name="star-o" color={Theme.colors.primary} size={16} />
+          <AwesomeIcon name="star-o" color={Theme.colors.primary} size={14} />
           <Text style={styles.detailText} type="subheadMedium">
             {abbrevNumber(repo.stargazers_count)}
           </Text>
         </View>
         <View style={styles.starsContainer}>
-          <Icon name="fork" color={Theme.colors.primary} size={16} />
+          <Icon name="fork" color={Theme.colors.primary} size={14} />
           <Text style={styles.detailText} type="subheadMedium">
             {abbrevNumber(repo.stargazers_count)}
           </Text>
@@ -63,7 +69,7 @@ const styles = StyleSheet.create({
   },
   card: {
     paddingHorizontal: Theme.spacing.m,
-    paddingVertical: Theme.spacing.l,
+    paddingVertical: Theme.spacing.m,
     display: 'flex',
     shadowColor: Theme.colors.secondary,
     shadowOffset: {
@@ -72,7 +78,6 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.2,
     shadowRadius: 2,
-    marginTop: Theme.spacing.l,
     backgroundColor: Theme.colors.card,
     justifyContent: 'flex-start',
     elevation: 3,
@@ -102,7 +107,7 @@ const styles = StyleSheet.create({
     backgroundColor: Theme.colors.backgroundPrimary,
   },
   titleContainer: {
-    marginTop: Theme.spacing.s,
+    marginVertical: Theme.spacing.xs,
     display: 'flex',
     justifyContent: 'flex-start',
     width: '100%',
@@ -111,6 +116,7 @@ const styles = StyleSheet.create({
   },
   description: {
     marginTop: Theme.spacing.s,
+    fontSize: 12,
   },
   top: {
     display: 'flex',

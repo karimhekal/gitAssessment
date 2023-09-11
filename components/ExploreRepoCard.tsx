@@ -7,15 +7,21 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import {abbrevNumber} from '../utils/Utils';
 import moment from 'moment';
-function RepoCard({repo}: {repo: GitHubRepository}) {
+function RepoCard({repo, index}: {repo: GitHubRepository; index: number}) {
   return (
-    <View style={styles.card}>
+    <View
+      style={[
+        styles.card,
+        {
+          marginTop: index == 0 ? 0 : Theme.spacing.m,
+        },
+      ]}>
       <View style={styles.top}>
         <View style={styles.topStart}>
           <Text type="smallTitle">Trending repositoy</Text>
         </View>
         <View style={styles.topEnd}>
-          <AwesomeIcon name="star-o" size={18} color={Theme.colors.primary} />
+          <AwesomeIcon name="star-o" size={12} color={Theme.colors.primary} />
           <Text style={styles.starWord} type="headlineMedium">
             Star
           </Text>
@@ -37,8 +43,16 @@ function RepoCard({repo}: {repo: GitHubRepository}) {
       </View>
       <View style={styles.line} />
       <View style={styles.bottomSection}>
-        <Text type="body">Updated {moment(repo.updated_at).fromNow()}</Text>
-        <Text type="body">{repo.language}</Text>
+        <View style={styles.bottomInner}>
+          <Text style={{fontSize: 12}} type="captionMedium">
+            Updated {moment(repo.updated_at).fromNow()}
+          </Text>
+        </View>
+        <View style={styles.bottomInner}>
+          <Text style={{fontSize: 12}} type="captionMedium">
+            {repo.language}
+          </Text>
+        </View>
       </View>
     </View>
   );
@@ -52,6 +66,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
     gap: Theme.spacing.l,
+  },
+  bottomInner: {
+    flex: 0.5,
   },
   line: {
     borderBottomWidth: StyleSheet.hairlineWidth,
@@ -70,7 +87,6 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.2,
     shadowRadius: 2,
-    marginTop: Theme.spacing.l,
     backgroundColor: Theme.colors.card,
     justifyContent: 'flex-start',
     elevation: 3,
@@ -79,19 +95,21 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   repoStarsText: {
-    fontSize: Theme.spacing.m,
+    fontSize: 12,
     color: Theme.colors.primary,
   },
   starWord: {
-    marginStart: Theme.spacing.s,
+    marginStart: Theme.spacing.xs,
+    fontSize: 12,
   },
   repoName: {
     marginStart: Theme.spacing.s,
     color: Theme.colors.primary,
+    fontSize: 18,
   },
   starsBadgeContainer: {
-    paddingHorizontal: Theme.spacing.s,
-    paddingVertical: Theme.spacing.xs,
+    paddingHorizontal: 10,
+    paddingVertical: 2,
     marginStart: Theme.spacing.s,
     display: 'flex',
     justifyContent: 'center',
@@ -109,6 +127,7 @@ const styles = StyleSheet.create({
   },
   description: {
     marginTop: Theme.spacing.s,
+    fontSize: 12,
   },
   top: {
     display: 'flex',
@@ -118,7 +137,7 @@ const styles = StyleSheet.create({
   },
   topStart: {
     display: 'flex',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
   },
   topEnd: {
     display: 'flex',

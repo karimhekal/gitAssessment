@@ -66,6 +66,23 @@ export const FormField = React.forwardRef<TextInput, FormFieldProps>(
             <Icon color={'black'} name="x" />
           </TouchableOpacity>
         )}
+        {props.searchButton ? (
+          <TouchableOpacity
+            style={{
+              borderRadius: 1000,
+              display: 'flex',
+              justifyContent: 'center',
+              padding: Theme.spacing.s / 2,
+              alignItems: 'center',
+              width: Theme.spacing.l,
+              height: Theme.spacing.l,
+              position: 'absolute',
+              right: '5%',
+              top: '40%',
+            }}>
+            <Icon name="search" size={18} color={Theme.colors.secondary} />
+          </TouchableOpacity>
+        ) : null}
       </View>
     );
   },
@@ -77,7 +94,9 @@ const styles = StyleSheet.create({
     color: Theme.colors.secondary,
     fontFamily: Theme.fonts.EnglishRegular,
     backgroundColor: Theme.colors.background,
-    padding: 10,
+    paddingVertical: 12,
+    paddingHorizontal: 10,
+    fontSize: 12,
     borderColor: Theme.colors.secondary,
     borderRadius: 8,
     writingDirection: I18nManager.isRTL ? 'rtl' : 'ltr',

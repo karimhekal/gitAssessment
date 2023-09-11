@@ -9,9 +9,9 @@ export const fonts = {
 export const Theme = {
   colors: {
     primary: '#68DDBA',
-    backgroundPrimary:'rgba(104, 221, 186, 0.11)',
+    backgroundPrimary: 'rgba(104, 221, 186, 0.11)',
     secondary: '#7B848D',
-    tabBackground: '#FAFCFE',
+    tabBackground: 'rgba(245, 247, 249, 1)',
     text: '#000',
     background: '#fff',
     card: '#fff',
@@ -62,23 +62,23 @@ export const Theme = {
       fontFamily: fonts.EnglishRegular,
     },
     caption: {
-      fontSize: 11,
-      lineHeight: 13,
+      fontSize: 12,
+      lineHeight: 14,
       fontFamily: fonts.EnglishRegular,
     },
     captionBold: {
-      fontSize: 11,
-      lineHeight: 13,
+      fontSize: 12,
+      lineHeight: 14,
       fontFamily: fonts.EnglishBold,
     },
     captionMedium: {
-      fontSize: 11,
-      lineHeight: 13,
+      fontSize: 12,
+      lineHeight: 14,
       fontFamily: fonts.EnglishRegular,
     },
     captionLight: {
-      fontSize: 11,
-      lineHeight: 13,
+      fontSize: 12,
+      lineHeight: 14,
       fontFamily: fonts.EnglishLight,
     },
     smallerFootnote: {

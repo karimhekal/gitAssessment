@@ -23,6 +23,7 @@ import DatePicker from 'react-native-date-picker';
 import Modal from 'react-native-modal';
 import SelectLanguage from './SelectLanguage';
 import moment from 'moment';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const languageArr: IViewCountArr[] = [
   {
@@ -31,7 +32,7 @@ const languageArr: IViewCountArr[] = [
   },
   {
     label: 'C++',
-    value: 'c++',
+    value: 'C++',
   },
   {
     label: 'Java',
@@ -116,16 +117,28 @@ export default function FilteredTab({index}) {
         <TouchableOpacity
           onPress={() => setLangModalVisisble(true)}
           style={styles.langFilter}>
-          <Text type="captionMedium">Language:{languageValue}</Text>
+          <View style={styles.horizontal}>
+            <Text style={styles.filterTitle} type="captionMedium">
+              Language :{' '}
+            </Text>
+            <Text type="captionMedium">{languageValue}</Text>
+          </View>
+          <Icon name="angle-down" size={14} />
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
             setDateModalOpen(true);
           }}
-          style={styles.dateFilter}>
-          <Text type="captionMedium">
-            Date:{moment(dateValue).format('YYYY-MM-DD')}
-          </Text>
+          style={styles.langFilter}>
+          <View style={styles.horizontal}>
+            <Text style={styles.filterTitle} type="captionMedium">
+              Date :{' '}
+            </Text>
+            <Text type="captionMedium">
+              {moment(dateValue).format('D MMM YY')}
+            </Text>
+          </View>
+          <Icon name="angle-down" size={14} />
         </TouchableOpacity>
       </View>
 
@@ -141,8 +154,8 @@ export default function FilteredTab({index}) {
           }
           showsVerticalScrollIndicator={false}
           data={repos}
-          renderItem={({item}) => {
-            return <FilterRepoCard repo={item} />;
+          renderItem={({item, index}) => {
+            return <FilterRepoCard index={index} repo={item} />;
           }}
         />
       ) : (
@@ -164,6 +177,15 @@ const styles = StyleSheet.create({
     marginTop: Theme.spacing.m,
     alignItems: 'center',
     width: '100%',
+    paddingBottom: Theme.spacing.m,
+  },
+  filterTitle: {
+    color: Theme.colors.secondary,
+  },
+  horizontal: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   title: {
     marginTop: Theme.spacing.l,
@@ -192,7 +214,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     backgroundColor: Theme.colors.background,
     padding: Theme.spacing.m,
-    width: '40%',
+    flex: 0.48,
     shadowColor: 'rgba(100,100,100,0.2)',
     shadowOffset: {
       width: 1,
@@ -202,14 +224,15 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 2,
     borderRadius: Theme.spacing.s,
-    justifyContent: 'center',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
     alignItems: 'center',
   },
   dateFilter: {
     display: 'flex',
     backgroundColor: Theme.colors.background,
     padding: Theme.spacing.m,
-    width: '40%',
+    flex: 0.48,
     shadowColor: 'rgba(100,100,100,0.2)',
     shadowOffset: {
       width: 1,
@@ -220,7 +243,7 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     borderRadius: Theme.spacing.s,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'flex-start',
   },
   dropDownContainerStyle: {
     borderWidth: 0,

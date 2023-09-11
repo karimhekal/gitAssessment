@@ -10,7 +10,6 @@ export const Theme = {
   colors: {
     primary: '#68DDBA',
     backgroundPrimary:'rgba(104, 221, 186, 0.11)',
-    darkerPrimary: '#3DD3F1BA',
     secondary: '#7B848D',
     tabBackground: '#FAFCFE',
     text: '#000',

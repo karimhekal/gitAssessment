@@ -1,22 +1,15 @@
 import React, {useState} from 'react';
 import {
-  Button,
   Dimensions,
   FlatList,
   ScrollView,
   StyleSheet,
-  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
 import {Text} from './Text';
 import {Theme} from '../Config';
-import {Icon} from 'react-native-vector-icons/Icon';
 import {FormField} from './FormField';
-interface IItem {
-  value: string;
-  bl;
-}
 export default function SelectLanguage({
   setModalVisible,
   languages,
@@ -46,7 +39,6 @@ export default function SelectLanguage({
     <View style={styles.container}>
       <View style={styles.header}>
         <Text>Select Language</Text>
-
         <TouchableOpacity
           style={styles.x}
           onPress={() => {
@@ -60,8 +52,7 @@ export default function SelectLanguage({
         clearButton
         style={styles.input}
       />
-      <ScrollView
-        style={{width: '100%', height: Dimensions.get('screen').height / 2}}>
+      <ScrollView contentContainerStyle={styles.scroll}>
         <FlatList
           showsVerticalScrollIndicator
           renderItem={({item}) => {
@@ -81,6 +72,7 @@ export default function SelectLanguage({
   );
 }
 const styles = StyleSheet.create({
+  scroll: {width: '100%', height: Dimensions.get('screen').height / 2},
   container: {
     backgroundColor: 'white',
     padding: Theme.spacing.m,
@@ -105,9 +97,10 @@ const styles = StyleSheet.create({
     fontSize: 12,
     lineHeight: 16,
     color: Theme.colors.background,
+    fontFamily: Theme.fonts.EnglishBold,
   },
   x: {
-    backgroundColor: Theme.colors.secondary,
+    backgroundColor: 'rgba(204, 212, 221, 1)',
     borderRadius: 10000,
     display: 'flex',
     justifyContent: 'center',

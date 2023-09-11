@@ -1,4 +1,6 @@
-interface GitHubRepository {
+import {TextInputProps} from 'react-native';
+
+export interface GitHubRepository {
   allow_forking: boolean;
   archive_url: string;
   archived: boolean;
@@ -105,5 +107,26 @@ interface GitHubRepository {
   watchers_count: number;
   web_commit_signoff_required: boolean;
 }
+export interface IViewCountArr {
+  value: string;
+  label: string;
+}
+[];
+export interface Ifilter {
+  language: string;
+  date: string;
+  count: string;
+}
 
-export default GitHubRepository;
+export interface FormFieldProps extends TextInputProps {
+  error?: string | null;
+  width?: string;
+  clearButton?: boolean;
+}
+
+export interface RepoState {
+  repos: GitHubRepository[]; // Replace with the actual data type
+  filteredRepos: any[];
+  loading: boolean;
+  error: string | null;
+}

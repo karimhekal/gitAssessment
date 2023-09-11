@@ -88,7 +88,9 @@ export default function FilteredTab({index}) {
   }, [dispatch, index, languageValue, dateValue]);
   return (
     <View style={styles.container}>
+      <Text style={styles.title}>Repositories</Text>
       <DatePicker
+        mode="date"
         modal
         open={dateModalOpen}
         date={dateValue}
@@ -162,6 +164,11 @@ const styles = StyleSheet.create({
     marginTop: Theme.spacing.m,
     alignItems: 'center',
     width: '100%',
+  },
+  title: {
+    marginTop: Theme.spacing.l,
+    fontSize: 20,
+    fontFamily: Theme.fonts.EnglishRegular,
   },
   container: {
     width: '100%',

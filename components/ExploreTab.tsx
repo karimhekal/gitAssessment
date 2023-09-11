@@ -8,6 +8,7 @@ import {Theme} from '../Config';
 import LoadingPlaceHolder from './LoadingPlaceHolder';
 import RepoCard from './ExploreRepoCard';
 import DropDownPicker from 'react-native-dropdown-picker';
+import {Text} from './Text';
 
 const viewCountArr: IViewCountArr[] = [
   {
@@ -48,6 +49,7 @@ export default function ExploreTab({index}) {
   const [items, setItems] = useState(viewCountArr);
   return (
     <View style={styles.container}>
+      <Text style={styles.title}>Explore Popular</Text>
       <DropDownPicker
         open={open}
         containerStyle={styles.containerStyle}
@@ -94,6 +96,11 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     backgroundColor: Theme.colors.tabBackground,
     height: '100%',
+  },
+  title: {
+    marginTop: Theme.spacing.l,
+    fontSize: 20,
+    fontFamily: Theme.fonts.EnglishRegular,
   },
   loadingCard: {
     backgroundColor: 'rgba(100,100,100,0.45)',

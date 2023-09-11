@@ -11,15 +11,18 @@ import React from 'react';
 import {SafeAreaView, ScrollView, StyleSheet} from 'react-native';
 
 import {Provider} from 'react-redux';
-import {store} from './store/store';
+import {persistor, store} from './store/store';
 import List from './components/List';
+import {PersistGate} from 'redux-persist/integration/react';
 
 function App(): JSX.Element {
   return (
     <Provider store={store}>
-      <SafeAreaView style={styles.safeArea}>
-        <List />
-      </SafeAreaView>
+      <PersistGate loading={null} persistor={persistor}>
+        <SafeAreaView style={styles.safeArea}>
+          <List />
+        </SafeAreaView>
+      </PersistGate>
     </Provider>
   );
 }

@@ -177,6 +177,7 @@ const styles = StyleSheet.create({
     marginTop: Theme.spacing.m,
     alignItems: 'center',
     width: '100%',
+    paddingBottom: Theme.spacing.m,
   },
   filterTitle: {
     color: Theme.colors.secondary,

@@ -6,9 +6,15 @@ import {GitHubRepository} from '../interfaces/interfaces';
 import Icon from 'react-native-vector-icons/AntDesign';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import {abbrevNumber} from '../utils/Utils';
-function FilterRepoCard({repo}: {repo: GitHubRepository}) {
+function FilterRepoCard({
+  repo,
+  index,
+}: {
+  repo: GitHubRepository;
+  index: number;
+}) {
   return (
-    <View style={styles.card}>
+    <View style={[styles.card, {marginTop: index == 0 ? 0 : Theme.spacing.m}]}>
       <View style={styles.top}></View>
       <View style={styles.titleContainer}>
         <Icon name="book" size={20} color={Theme.colors.primary} />
@@ -72,7 +78,6 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.2,
     shadowRadius: 2,
-    marginTop: Theme.spacing.l,
     backgroundColor: Theme.colors.card,
     justifyContent: 'flex-start',
     elevation: 3,

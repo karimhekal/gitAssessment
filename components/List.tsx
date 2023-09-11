@@ -1,18 +1,5 @@
-import React, {useCallback, useEffect, useState} from 'react';
-import {
-  Dimensions,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-  useWindowDimensions,
-} from 'react-native';
-import {RootState, useAppDispatch} from '../store/store';
-import {useSelector} from 'react-redux';
-import {
-  fetchFilteredRepos,
-  fetchPopularRepos,
-} from '../store/reducers/dataSlice';
+import React, {useCallback, useState} from 'react';
+import {Dimensions, StyleSheet, useWindowDimensions} from 'react-native';
 import {
   SceneMap,
   SceneRendererProps,
@@ -26,7 +13,6 @@ import {Box} from './Box';
 export default function List() {
   const [index, setIndex] = useState<number>(0);
 
-  const layout = useWindowDimensions();
   const [routes, setRoutes] = React.useState([
     {key: 'first', title: 'Explore'},
     {key: 'second', title: 'Repositories'},
@@ -86,13 +72,17 @@ const styles = StyleSheet.create({
   },
   tabBarIndicatorStyle: {
     backgroundColor: Theme.colors.primary,
+    marginLeft: Theme.spacing.s,
   },
   tabBarLabelStyle: {
     textTransform: 'capitalize',
     lineHeight: 18,
     fontSize: 14,
+    marginLeft: Theme.spacing.s,
   },
   tabBarTabStyle: {
     height: 60,
+    marginLeft: Theme.spacing.s,
+    width: 'auto',
   },
 });

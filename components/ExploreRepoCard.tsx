@@ -21,7 +21,7 @@ function RepoCard({repo, index}: {repo: GitHubRepository; index: number}) {
           <Text type="smallTitle">Trending repositoy</Text>
         </View>
         <View style={styles.topEnd}>
-          <AwesomeIcon name="star-o" size={18} color={Theme.colors.primary} />
+          <AwesomeIcon name="star-o" size={12} color={Theme.colors.primary} />
           <Text style={styles.starWord} type="headlineMedium">
             Star
           </Text>
@@ -44,12 +44,14 @@ function RepoCard({repo, index}: {repo: GitHubRepository; index: number}) {
       <View style={styles.line} />
       <View style={styles.bottomSection}>
         <View style={styles.bottomInner}>
-          <Text type="captionMedium">
+          <Text style={{fontSize: 12}} type="captionMedium">
             Updated {moment(repo.updated_at).fromNow()}
           </Text>
         </View>
         <View style={styles.bottomInner}>
-          <Text type="captionMedium">{repo.language}</Text>
+          <Text style={{fontSize: 12}} type="captionMedium">
+            {repo.language}
+          </Text>
         </View>
       </View>
     </View>
@@ -93,19 +95,21 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   repoStarsText: {
-    fontSize: Theme.spacing.m,
+    fontSize: 12,
     color: Theme.colors.primary,
   },
   starWord: {
-    marginStart: Theme.spacing.s,
+    marginStart: Theme.spacing.xs,
+    fontSize: 12,
   },
   repoName: {
     marginStart: Theme.spacing.s,
     color: Theme.colors.primary,
+    fontSize: 18,
   },
   starsBadgeContainer: {
-    paddingHorizontal: Theme.spacing.s,
-    paddingVertical: Theme.spacing.xs,
+    paddingHorizontal: 10,
+    paddingVertical: 2,
     marginStart: Theme.spacing.s,
     display: 'flex',
     justifyContent: 'center',
@@ -123,6 +127,7 @@ const styles = StyleSheet.create({
   },
   description: {
     marginTop: Theme.spacing.s,
+    fontSize: 12,
   },
   top: {
     display: 'flex',
@@ -132,7 +137,7 @@ const styles = StyleSheet.create({
   },
   topStart: {
     display: 'flex',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
   },
   topEnd: {
     display: 'flex',

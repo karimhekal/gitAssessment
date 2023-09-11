@@ -131,14 +131,13 @@ const styles = StyleSheet.create({
   dropDownStyle: {
     marginTop: Theme.spacing.m,
     borderWidth: 0,
-    shadowColor: 'rgba(100,100,100,0.4)',
-    elevation: 10,
+    shadowColor: 'rgba(100,100,100,0.35)',
+    elevation: 2,
     shadowOffset: {
       width: 1,
       height: 1,
     },
-    shadowOpacity: 1,
-    shadowRadius: 1,
-    padding: 10,
+    shadowOpacity: 0.5,
+    shadowRadius: 3,
   },
 });

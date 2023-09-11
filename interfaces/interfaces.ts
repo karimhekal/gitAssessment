@@ -122,6 +122,7 @@ export interface FormFieldProps extends TextInputProps {
   error?: string | null;
   width?: string;
   clearButton?: boolean;
+  searchButton?: boolean;
 }
 
 export interface RepoState {

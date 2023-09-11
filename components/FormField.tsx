@@ -61,7 +61,7 @@ export const FormField = React.forwardRef<TextInput, FormFieldProps>(
               height: Theme.spacing.l,
               position: 'absolute',
               right: 5,
-              top: '18%',
+              top: '40%',
             }}>
             <Icon color={'black'} name="x" />
           </TouchableOpacity>

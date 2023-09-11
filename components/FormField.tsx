@@ -1,21 +1,14 @@
-import React, {LegacyRef, useState} from 'react';
+import React, {useState} from 'react';
 import {
   TextInput,
   StyleSheet,
   I18nManager,
-  TextInputProps,
   View,
   TouchableOpacity,
 } from 'react-native';
 import {Theme} from '../Config';
-import {Text} from './Text';
 import Icon from 'react-native-vector-icons/Feather';
-
-interface FormFieldProps extends TextInputProps {
-  error?: string | null;
-  width?: string;
-  clearButton?: boolean;
-}
+import {FormFieldProps} from '../interfaces/interfaces';
 
 export const FormField = React.forwardRef<TextInput, FormFieldProps>(
   (props, ref) => {

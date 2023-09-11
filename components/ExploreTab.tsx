@@ -3,17 +3,12 @@ import {FlatList, SafeAreaView, StyleSheet, View} from 'react-native';
 import {fetchPopularRepos} from '../store/reducers/dataSlice';
 import {useSelector} from 'react-redux';
 import {RootState, useAppDispatch} from '../store/store';
-import GitHubRepository from '../interfaces/interfaces';
+import {GitHubRepository} from '../interfaces/interfaces';
 import {Theme} from '../Config';
-import {Text} from './Text';
 import LoadingPlaceHolder from './LoadingPlaceHolder';
 import RepoCard from './ExploreRepoCard';
 import DropDownPicker from 'react-native-dropdown-picker';
-interface IViewCountArr {
-  value: string;
-  label: string;
-}
-[];
+
 const viewCountArr: IViewCountArr[] = [
   {
     label: '5',
@@ -71,6 +66,7 @@ export default function ExploreTab({index}) {
         mode="BADGE"
       />
       <FlatList<GitHubRepository>
+        showsVerticalScrollIndicator={false}
         ListEmptyComponent={() => {
           return (
             <LoadingPlaceHolder>

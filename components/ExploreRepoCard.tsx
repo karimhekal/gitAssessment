@@ -2,7 +2,7 @@ import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {Theme} from '../Config';
 import {Text} from './Text';
-import GitHubRepository from '../interfaces/interfaces';
+import {GitHubRepository} from '../interfaces/interfaces';
 import Icon from 'react-native-vector-icons/AntDesign';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import {abbrevNumber} from '../utils/Utils';

@@ -13,10 +13,6 @@ import {Text} from './Text';
 import {Theme} from '../Config';
 import {Icon} from 'react-native-vector-icons/Icon';
 import {FormField} from './FormField';
-interface IItem {
-  value: string;
-  bl;
-}
 export default function SelectLanguage({
   setModalVisible,
   languages,

@@ -9,7 +9,11 @@ import {
 import {fetchFilteredRepos} from '../store/reducers/dataSlice';
 import {useSelector} from 'react-redux';
 import {RootState, useAppDispatch} from '../store/store';
-import GitHubRepository from '../interfaces/interfaces';
+import {
+  GitHubRepository,
+  IViewCountArr,
+  Ifilter,
+} from '../interfaces/interfaces';
 import {Theme} from '../Config';
 import {Text} from './Text';
 import LoadingPlaceHolder from './LoadingPlaceHolder';
@@ -20,11 +24,6 @@ import Modal from 'react-native-modal';
 import SelectLanguage from './SelectLanguage';
 import moment from 'moment';
 
-interface IViewCountArr {
-  value: string;
-  label: string;
-}
-[];
 const languageArr: IViewCountArr[] = [
   {
     label: 'C',
@@ -67,11 +66,7 @@ const languageArr: IViewCountArr[] = [
     value: 'Dart',
   },
 ];
-interface Ifilter {
-  language: string;
-  date: string;
-  count: string;
-}
+
 export default function FilteredTab({index}) {
   const dispatch = useAppDispatch();
   const repos = useSelector((state: RootState) => state.data.filteredRepos);
@@ -79,8 +74,6 @@ export default function FilteredTab({index}) {
   const [langModalVisible, setLangModalVisisble] = useState<boolean>(false);
   const [dateValue, setDateValue] = useState(new Date());
   const loading = useSelector((state: RootState) => state.data.loading);
-  const error = useSelector((state: RootState) => state.data.error);
-  const [open, setOpen] = useState(false);
   const [dateModalOpen, setDateModalOpen] = useState<boolean>(false);
 
   function getRepos({language, date, count}: Ifilter) {
@@ -139,11 +132,12 @@ export default function FilteredTab({index}) {
           refreshing={loading}
           onRefresh={() =>
             getRepos({
-              count: '1',
-              date: '',
+              count: '10',
+              date: moment(dateValue).format('YYYY-MM-DD'),
               language: languageValue,
             })
           }
+          showsVerticalScrollIndicator={false}
           data={repos}
           renderItem={({item}) => {
             return <FilterRepoCard repo={item} />;

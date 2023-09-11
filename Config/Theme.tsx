@@ -9,6 +9,7 @@ export const fonts = {
 export const Theme = {
   colors: {
     primary: '#68DDBA',
+    backgroundPrimary:'rgba(104, 221, 186, 0.11)',
     darkerPrimary: '#3DD3F1BA',
     secondary: '#7B848D',
     tabBackground: '#FAFCFE',
@@ -43,7 +44,7 @@ export const Theme = {
     },
     smallTitle: {
       fontFamily: fonts.EnglishLight,
-      fontSize: 10,
+      fontSize: 12,
     },
     bodyMedium: {
       fontSize: 17,
@@ -81,7 +82,6 @@ export const Theme = {
       lineHeight: 13,
       fontFamily: fonts.EnglishLight,
     },
-
     smallerFootnote: {
       fontSize: 11,
       lineHeight: 14,

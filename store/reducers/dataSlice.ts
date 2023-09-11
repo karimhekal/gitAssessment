@@ -20,7 +20,8 @@ const initialState: RepoState = {
 // Create an asynchronous thunk for fetching popular repositories with a specific number
 export const fetchPopularRepos = createAsyncThunk(
   'repos/fetchPopular',
-  async (count: number) => {
+  async (count: number | string) => {
+    console.log('----- fetching popular');
     try {
       const response = await fetch(
         `https://api.github.com/search/repositories?q=stars:>0&sort=stars&order=desc&per_page=${count}`,

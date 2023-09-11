@@ -1,7 +1,7 @@
 import React from 'react';
 import {View} from 'react-native';
 import {Text} from './Text';
-export default function FilteredTab() {
+export default function FilteredTab({index}) {
   return (
     <View
       style={{

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {FlatList, SafeAreaView, StyleSheet, View} from 'react-native';
 import {fetchPopularRepos} from '../store/reducers/dataSlice';
 import {useSelector} from 'react-redux';
@@ -8,22 +8,72 @@ import {Theme} from '../Config';
 import {Text} from './Text';
 import LoadingPlaceHolder from './LoadingPlaceHolder';
 import RepoCard from './RepoCard';
-export default function ExploreTab() {
+import DropDownPicker from 'react-native-dropdown-picker';
+interface IViewCountArr {
+  value: string;
+  label: string;
+}
+[];
+const viewCountArr: IViewCountArr[] = [
+  {
+    label: '5',
+    value: '5',
+  },
+  {
+    label: '10',
+    value: '10',
+  },
+  {
+    label: '15',
+    value: '15',
+  },
+  {
+    label: '20',
+    value: '20',
+  },
+  {
+    label: '25',
+    value: '25',
+  },
+];
+export default function ExploreTab({index}) {
   const dispatch = useAppDispatch();
   const repos = useSelector((state: RootState) => state.data.repos);
-  // const filteredRepos = useSelector(
-  //   (state: RootState) => state.data.filteredRepos,
-  // );
+  const [viewCount, setViewCount] = useState<string>(viewCountArr[0].value);
+  function getRepos(count: string) {
+    dispatch(fetchPopularRepos(count));
+  }
   useEffect(() => {
-    dispatch(fetchPopularRepos(4));
-  }, [dispatch]);
+    getRepos(viewCount);
+  }, [dispatch, index]);
   const loading = useSelector((state: RootState) => state.data.loading);
   const error = useSelector((state: RootState) => state.data.error);
-
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(viewCountArr[0].value);
+  const [items, setItems] = useState(viewCountArr);
   return (
     <View style={styles.container}>
-      {!loading ? (
+      <DropDownPicker
+        open={open}
+        containerStyle={styles.containerStyle}
+        dropDownContainerStyle={styles.dropDownContainerStyle}
+        style={styles.dropDownStyle}
+        value={'View' + viewCount}
+        onSelectItem={item => {
+          getRepos(item.value || '1');
+          setViewCount(item.value || '1');
+        }}
+        items={items}
+        placeholder={`View :${value}`}
+        setOpen={setOpen}
+        setValue={setValue}
+        setItems={setItems}
+        mode="BADGE"
+      />
+      {!loading && !error ? (
         <FlatList<GitHubRepository>
+          refreshing={loading}
+          onRefresh={() => getRepos(viewCount)}
           data={repos}
           renderItem={({item}) => {
             return <RepoCard repo={item} />;
@@ -43,15 +93,36 @@ export default function ExploreTab() {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    padding: 10,
+    paddingHorizontal: Theme.spacing.l,
     flexDirection: 'column',
     backgroundColor: Theme.colors.tabBackground,
+    height: '100%',
   },
   loadingCard: {
     backgroundColor: 'rgba(100,100,100,0.45)',
     width: '100%',
     height: 160,
-    borderRadius: Theme.spacing.m,
+    borderRadius: Theme.spacing.s,
     marginTop: Theme.spacing.m,
+  },
+  containerStyle: {
+    width: '40%',
+    borderWidth: 0,
+  },
+  dropDownContainerStyle: {
+    borderWidth: 0,
+  },
+  dropDownStyle: {
+    marginTop: Theme.spacing.m,
+    borderWidth: 0,
+    shadowColor: 'rgba(100,100,100,0.4)',
+    elevation: 10,
+    shadowOffset: {
+      width: 1,
+      height: 1,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 1,
+    padding: 10,
   },
 });

@@ -33,20 +33,24 @@ export default function List() {
   ]);
 
   const Explore = useCallback(() => {
-    return <ExploreTab />;
-  }, []);
+    return <ExploreTab index={index} />;
+  }, [index]);
   const Filtered = useCallback(() => {
-    return <FilteredTab />;
-  }, []);
+    return <FilteredTab index={index} />;
+  }, [index]);
   const renderScene = SceneMap({
-    first: ExploreTab,
-    second: FilteredTab,
+    first: Explore,
+    second: Filtered,
   });
 
   const renderTabBar = (props: SceneRendererProps) => {
     return (
       <TabBar
-        scrollEnabled={false}
+        onTabPress={scene => {
+          console.log(scene);
+        }}
+
+        scrollEnabled={true}
         {...props}
         indicatorStyle={styles.tabBarIndicatorStyle}
         style={styles.tabBarStyle}
@@ -58,7 +62,7 @@ export default function List() {
   return (
     <Box>
       <TabView
-        swipeEnabled={false}
+        swipeEnabled={true}
         lazy
         navigationState={{index, routes}}
         renderScene={renderScene}
@@ -87,8 +91,8 @@ const styles = StyleSheet.create({
     textTransform: 'capitalize',
     lineHeight: 18,
     fontSize: 14,
-},
+  },
   tabBarTabStyle: {
-    height: 40,
+    height: 60,
   },
 });

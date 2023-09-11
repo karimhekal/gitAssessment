@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
   },
   card: {
     paddingHorizontal: Theme.spacing.m,
-    paddingVertical: Theme.spacing.l,
+    paddingVertical: Theme.spacing.m,
     display: 'flex',
     shadowColor: Theme.colors.secondary,
     shadowOffset: {
@@ -111,6 +111,7 @@ const styles = StyleSheet.create({
   },
   description: {
     marginTop: Theme.spacing.s,
+    fontSize: 12,
   },
   top: {
     display: 'flex',

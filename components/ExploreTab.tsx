@@ -49,26 +49,34 @@ export default function ExploreTab({index}) {
   const [items, setItems] = useState(viewCountArr);
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Explore Popular</Text>
-      <DropDownPicker
-        open={open}
-        containerStyle={styles.containerStyle}
-        dropDownContainerStyle={styles.dropDownContainerStyle}
-        style={styles.dropDownStyle}
-        value={'View' + viewCount}
-        onSelectItem={item => {
-          getRepos(item.value || '1');
-          setViewCount(item.value || '1');
-        }}
-        items={items}
-        placeholder={`View :${value}`}
-        setOpen={setOpen}
-        setValue={setValue}
-        setItems={setItems}
-        mode="BADGE"
-      />
+      <View style={styles.topSectionContainer}>
+        <Text style={styles.title}>Explore Popular</Text>
+        <DropDownPicker
+          open={open}
+          containerStyle={styles.containerStyle}
+          dropDownContainerStyle={styles.dropDownContainerStyle}
+          style={styles.dropDownStyle}
+          value={'View' + viewCount}
+          onSelectItem={item => {
+            getRepos(item.value || '1');
+            setViewCount(item.value || '1');
+          }}
+          items={items}
+          placeholder={`View : ${value}`}
+          placeholderStyle={{
+            color: Theme.colors.text,
+          }}
+          searchPlaceholderTextColor="blue"
+          setOpen={setOpen}
+          setValue={setValue}
+          setItems={setItems}
+          mode="BADGE"
+        />
+      </View>
       <FlatList<GitHubRepository>
         showsVerticalScrollIndicator={false}
+        numColumns={1}
+        contentContainerStyle={{}}
         ListEmptyComponent={() => {
           return (
             <LoadingPlaceHolder>
@@ -81,8 +89,8 @@ export default function ExploreTab({index}) {
         refreshing={loading}
         onRefresh={() => getRepos(viewCount)}
         data={repos}
-        renderItem={({item}) => {
-          return <RepoCard repo={item} />;
+        renderItem={({item, index}) => {
+          return <RepoCard index={index} repo={item} />;
         }}
       />
     </View>
@@ -109,8 +117,12 @@ const styles = StyleSheet.create({
     borderRadius: Theme.spacing.s,
     marginTop: Theme.spacing.m,
   },
+  topSectionContainer: {
+    paddingBottom: Theme.spacing.m,
+    zIndex: 100,
+  },
   containerStyle: {
-    width: '40%',
+    width: '45%',
     borderWidth: 0,
   },
   dropDownContainerStyle: {

@@ -49,9 +49,10 @@ export default function List() {
         onTabPress={scene => {
           console.log(scene);
         }}
-
         scrollEnabled={true}
         {...props}
+        activeColor={Theme.colors.primary}
+        inactiveColor={Theme.colors.secondary}
         indicatorStyle={styles.tabBarIndicatorStyle}
         style={styles.tabBarStyle}
         tabStyle={styles.tabBarTabStyle}
@@ -87,7 +88,6 @@ const styles = StyleSheet.create({
     backgroundColor: Theme.colors.primary,
   },
   tabBarLabelStyle: {
-    color: 'black',
     textTransform: 'capitalize',
     lineHeight: 18,
     fontSize: 14,

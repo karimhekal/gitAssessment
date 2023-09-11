@@ -21,23 +21,23 @@ function FilterRepoCard({
         <Text style={styles.repoName}>{repo.name}</Text>
       </View>
       <View>
-        <Text numberOfLines={3} style={styles.description} type="subheadMedium">
+        <Text numberOfLines={3} style={styles.description}>
           {repo.description}
         </Text>
       </View>
       <View style={styles.line} />
       <View style={styles.bottomSection}>
-        <Text type="subheadMedium">{repo.language}</Text>
+        <Text style={styles.textDetails}>{repo.language}</Text>
         <View style={styles.starsContainer}>
           <AwesomeIcon name="star-o" color={Theme.colors.primary} size={14} />
-          <Text style={styles.detailText} type="subheadMedium">
+          <Text style={styles.textDetails}>
             {abbrevNumber(repo.stargazers_count)}
           </Text>
         </View>
         <View style={styles.starsContainer}>
           <Icon name="fork" color={Theme.colors.primary} size={14} />
-          <Text style={styles.detailText} type="subheadMedium">
-            {abbrevNumber(repo.stargazers_count)}
+          <Text style={styles.textDetails}>
+            {abbrevNumber(repo.forks_count)}
           </Text>
         </View>
       </View>
@@ -57,6 +57,8 @@ const styles = StyleSheet.create({
   starsContainer: {
     marginStart: Theme.spacing.m,
     display: 'flex',
+    fontSize: 12,
+    lineHeight: 14,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
@@ -95,6 +97,7 @@ const styles = StyleSheet.create({
   repoName: {
     marginStart: Theme.spacing.s,
     color: Theme.colors.primary,
+    fontFamily: Theme.fonts.EnglishRegular,
   },
   starsBadgeContainer: {
     paddingHorizontal: Theme.spacing.s,
@@ -117,6 +120,12 @@ const styles = StyleSheet.create({
   description: {
     marginTop: Theme.spacing.s,
     fontSize: 12,
+    lineHeight: 16,
+  },
+  textDetails: {
+    fontSize: 12,
+    lineHeight: 14,
+    marginStart: Theme.spacing.xs,
   },
   top: {
     display: 'flex',

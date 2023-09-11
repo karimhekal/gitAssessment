@@ -29,13 +29,13 @@ function FilterRepoCard({
       <View style={styles.bottomSection}>
         <Text type="subheadMedium">{repo.language}</Text>
         <View style={styles.starsContainer}>
-          <AwesomeIcon name="star-o" color={Theme.colors.primary} size={16} />
+          <AwesomeIcon name="star-o" color={Theme.colors.primary} size={14} />
           <Text style={styles.detailText} type="subheadMedium">
             {abbrevNumber(repo.stargazers_count)}
           </Text>
         </View>
         <View style={styles.starsContainer}>
-          <Icon name="fork" color={Theme.colors.primary} size={16} />
+          <Icon name="fork" color={Theme.colors.primary} size={14} />
           <Text style={styles.detailText} type="subheadMedium">
             {abbrevNumber(repo.stargazers_count)}
           </Text>
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     backgroundColor: Theme.colors.backgroundPrimary,
   },
   titleContainer: {
-    marginTop: Theme.spacing.s,
+    marginVertical: Theme.spacing.xs,
     display: 'flex',
     justifyContent: 'flex-start',
     width: '100%',

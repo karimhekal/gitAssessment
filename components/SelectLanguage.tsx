@@ -63,7 +63,7 @@ export default function SelectLanguage({
                 <TouchableOpacity
                   onPress={() => handleValue(item.value)}
                   style={{
-                    marginTop: Theme.spacing.s,
+                    marginTop: Theme.spacing.m,
                     padding: Theme.spacing.s,
                   }}>
                   <Text style={{fontSize: 14}}>{item.value}</Text>

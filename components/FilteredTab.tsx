@@ -32,7 +32,7 @@ const languageArr: IViewCountArr[] = [
   },
   {
     label: 'C++',
-    value: 'c++',
+    value: 'C++',
   },
   {
     label: 'Java',

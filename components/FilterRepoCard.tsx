@@ -7,38 +7,34 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import {abbrevNumber} from '../utils/Utils';
 import moment from 'moment';
-export default function RepoCard({repo}: {repo: GitHubRepository}) {
+export default function FilterRepoCard({repo}: {repo: GitHubRepository}) {
   return (
     <View style={styles.card}>
-      <View style={styles.top}>
-        <View style={styles.topStart}>
-          <Text type="smallTitle">Trending repositoy</Text>
-        </View>
-        <View style={styles.topEnd}>
-          <AwesomeIcon name="star-o" size={18} color={Theme.colors.primary} />
-          <Text style={styles.starWord} type="headlineMedium">
-            Star
-          </Text>
-          <View style={styles.starsBadgeContainer}>
-            <Text style={styles.repoStarsText}>
-              {abbrevNumber(repo.stargazers_count)}
-            </Text>
-          </View>
-        </View>
-      </View>
+      <View style={styles.top}></View>
       <View style={styles.titleContainer}>
         <Icon name="book" size={20} color={Theme.colors.primary} />
         <Text style={styles.repoName}>{repo.name}</Text>
       </View>
       <View>
-        <Text style={styles.description} type="body">
+        <Text numberOfLines={3} style={styles.description} type="subheadMedium">
           {repo.description}
         </Text>
       </View>
       <View style={styles.line} />
       <View style={styles.bottomSection}>
-        <Text type="body">Updated {moment(repo.updated_at).fromNow()}</Text>
-        <Text type="body">{repo.language}</Text>
+        <Text type="subheadMedium">{repo.language}</Text>
+        <View style={styles.starsContainer}>
+          <AwesomeIcon name="star-o" color={Theme.colors.primary} size={16} />
+          <Text style={styles.detailText} type="subheadMedium">
+            {abbrevNumber(repo.stargazers_count)}
+          </Text>
+        </View>
+        <View style={styles.starsContainer}>
+          <Icon name="fork" color={Theme.colors.primary} size={16} />
+          <Text style={styles.detailText} type="subheadMedium">
+            {abbrevNumber(repo.stargazers_count)}
+          </Text>
+        </View>
       </View>
     </View>
   );
@@ -47,10 +43,17 @@ const styles = StyleSheet.create({
   bottomSection: {
     flexDirection: 'row',
     marginTop: Theme.spacing.m,
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     width: '100%',
-    gap: Theme.spacing.l,
+  },
+  detailText: {marginStart: Theme.spacing.xs},
+  starsContainer: {
+    marginStart: Theme.spacing.m,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   line: {
     borderBottomWidth: StyleSheet.hairlineWidth,

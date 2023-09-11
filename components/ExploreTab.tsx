@@ -7,7 +7,7 @@ import GitHubRepository from '../interfaces/interfaces';
 import {Theme} from '../Config';
 import {Text} from './Text';
 import LoadingPlaceHolder from './LoadingPlaceHolder';
-import RepoCard from './RepoCard';
+import RepoCard from './ExploreRepoCard';
 import DropDownPicker from 'react-native-dropdown-picker';
 interface IViewCountArr {
   value: string;
@@ -70,22 +70,23 @@ export default function ExploreTab({index}) {
         setItems={setItems}
         mode="BADGE"
       />
-      {!loading && !error ? (
-        <FlatList<GitHubRepository>
-          refreshing={loading}
-          onRefresh={() => getRepos(viewCount)}
-          data={repos}
-          renderItem={({item}) => {
-            return <RepoCard repo={item} />;
-          }}
-        />
-      ) : (
-        <LoadingPlaceHolder>
-          <View style={styles.loadingCard} />
-          <View style={styles.loadingCard} />
-          <View style={styles.loadingCard} />
-        </LoadingPlaceHolder>
-      )}
+      <FlatList<GitHubRepository>
+        ListEmptyComponent={() => {
+          return (
+            <LoadingPlaceHolder>
+              <View style={styles.loadingCard} />
+              <View style={styles.loadingCard} />
+              <View style={styles.loadingCard} />
+            </LoadingPlaceHolder>
+          );
+        }}
+        refreshing={loading}
+        onRefresh={() => getRepos(viewCount)}
+        data={repos}
+        renderItem={({item}) => {
+          return <RepoCard repo={item} />;
+        }}
+      />
     </View>
   );
 }

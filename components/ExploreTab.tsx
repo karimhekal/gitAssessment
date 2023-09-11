@@ -62,9 +62,13 @@ export default function ExploreTab({index}) {
             setViewCount(item.value || '1');
           }}
           items={items}
+          arrowIconStyle={{
+            marginHorizontal: 6,
+          }}
           placeholder={`View : ${value}`}
           placeholderStyle={{
             color: Theme.colors.text,
+            marginHorizontal: 6,
           }}
           searchPlaceholderTextColor="blue"
           setOpen={setOpen}

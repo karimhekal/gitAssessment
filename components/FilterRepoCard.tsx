@@ -6,8 +6,7 @@ import {GitHubRepository} from '../interfaces/interfaces';
 import Icon from 'react-native-vector-icons/AntDesign';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import {abbrevNumber} from '../utils/Utils';
-import moment from 'moment';
-export default function FilterRepoCard({repo}: {repo: GitHubRepository}) {
+function FilterRepoCard({repo}: {repo: GitHubRepository}) {
   return (
     <View style={styles.card}>
       <View style={styles.top}></View>
@@ -39,6 +38,7 @@ export default function FilterRepoCard({repo}: {repo: GitHubRepository}) {
     </View>
   );
 }
+export default React.memo(FilterRepoCard);
 const styles = StyleSheet.create({
   bottomSection: {
     flexDirection: 'row',

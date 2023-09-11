@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import {abbrevNumber} from '../utils/Utils';
 import moment from 'moment';
-export default function RepoCard({repo}: {repo: GitHubRepository}) {
+function RepoCard({repo}: {repo: GitHubRepository}) {
   return (
     <View style={styles.card}>
       <View style={styles.top}>
@@ -43,6 +43,7 @@ export default function RepoCard({repo}: {repo: GitHubRepository}) {
     </View>
   );
 }
+export default React.memo(RepoCard);
 const styles = StyleSheet.create({
   bottomSection: {
     flexDirection: 'row',

@@ -154,8 +154,8 @@ export default function FilteredTab({index}) {
           }
           showsVerticalScrollIndicator={false}
           data={repos}
-          renderItem={({item}) => {
-            return <FilterRepoCard repo={item} />;
+          renderItem={({item, index}) => {
+            return <FilterRepoCard index={index} repo={item} />;
           }}
         />
       ) : (
